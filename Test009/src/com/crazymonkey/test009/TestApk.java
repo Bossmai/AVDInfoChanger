@@ -38,49 +38,53 @@ public class TestApk extends ActivityInstrumentationTestCase2 {
 		solo = new Solo(getInstrumentation(), getActivity());
 	}
 	
-	public void testCanOpenSettings(){  
-		Log.d(TAG, "Wait for 008 to start.");
-		solo.waitForText("008神器v", 1, 15000);
-		
-		Log.d(TAG, "Click config button.");
-		Activity act = solo.getCurrentActivity();
-        
-        int main_centerImageId = act.getResources().getIdentifier("com.soft.apk008v:id/main_centerImg", "id" , act.getPackageName());
-        View main_centerImageView = act.findViewById(main_centerImageId);
-        
-        //set flag to true for the first click.
-        errorOccured = true;
-        try {
-        	solo.sleep(4000);
-        	solo.clickOnView(main_centerImageView);
-        	errorOccured = false;
-        } catch (junit.framework.AssertionFailedError e) {
-        	solo.sleep(4000);
-        	solo.clickOnScreen(240, 280);
-        }
-        
-        solo.waitForText("008神器0113", 1, 10000);
-		
-        Log.d(TAG, "Click save button.");
-		Activity loadActivity = solo.getCurrentActivity();
-        int saveButtonId = loadActivity.getResources().getIdentifier("com.soft.apk008v:id/button_restore", "id" , loadActivity.getPackageName());
-        View saveButtonView = loadActivity.findViewById(saveButtonId);
-        
-        //set flag to true for the first click.
-        errorOccured = true;
-        while (errorOccured)
-        try {
-        	solo.sleep(4000);
-        	solo.clickOnView(saveButtonView);
-        	errorOccured = false;
-        } catch (junit.framework.AssertionFailedError e) {
-        	solo.sleep(4000);
-        	solo.clickOnScreen(240, 280);
-        }
-        
-        solo.sleep(5000);
-        
-        Log.d(TAG, "done");
+	public void testCanOpenSettings(){
+		try {
+			Log.d(TAG, "Wait for 008 to start.");
+			solo.waitForText("008神器v", 1, 15000);
+			
+			Log.d(TAG, "Click config button.");
+			Activity act = solo.getCurrentActivity();
+	        
+	        int main_centerImageId = act.getResources().getIdentifier("com.soft.apk008v:id/main_centerImg", "id" , act.getPackageName());
+	        View main_centerImageView = act.findViewById(main_centerImageId);
+	        
+	        //set flag to true for the first click.
+	        errorOccured = true;
+	        try {
+	        	solo.sleep(4000);
+	        	solo.clickOnView(main_centerImageView);
+	        	errorOccured = false;
+	        } catch (junit.framework.AssertionFailedError e) {
+	        	solo.sleep(4000);
+	        	solo.clickOnScreen(240, 280);
+	        }
+	        
+	        solo.waitForText("008神器0113", 1, 10000);
+			
+	        Log.d(TAG, "Click save button.");
+			Activity loadActivity = solo.getCurrentActivity();
+	        int saveButtonId = loadActivity.getResources().getIdentifier("com.soft.apk008v:id/button_restore", "id" , loadActivity.getPackageName());
+	        View saveButtonView = loadActivity.findViewById(saveButtonId);
+	        
+	        //set flag to true for the first click.
+	        errorOccured = true;
+	        while (errorOccured)
+	        try {
+	        	solo.sleep(4000);
+	        	solo.clickOnView(saveButtonView);
+	        	errorOccured = false;
+	        } catch (junit.framework.AssertionFailedError e) {
+	        	solo.sleep(4000);
+	        	solo.clickOnScreen(240, 280);
+	        }
+	        
+	        solo.sleep(5000);
+
+			Log.d(TAG, "Monkey success.") ;
+		} catch (Exception e) {
+			Log.d(TAG, "Monkey failed.");
+		}
     }
 	
 	@Override
