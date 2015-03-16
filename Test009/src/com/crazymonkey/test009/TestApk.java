@@ -41,7 +41,7 @@ public class TestApk extends ActivityInstrumentationTestCase2 {
 	public void testCanOpenSettings(){
 		try {
 			Log.d(TAG, "Wait for 008 to start.");
-			solo.waitForText("008神器v", 1, 15000);
+			solo.waitForText("^008神器v$", 1, 15000);
 			
 			Log.d(TAG, "Click config button.");
 			Activity act = solo.getCurrentActivity();
@@ -60,7 +60,7 @@ public class TestApk extends ActivityInstrumentationTestCase2 {
 	        	solo.clickOnScreen(240, 280);
 	        }
 	        
-	        solo.waitForText("008神器0113", 1, 10000);
+	        solo.waitForText("^008神器0113$", 1, 10000);
 			
 	        Log.d(TAG, "Click save button.");
 			Activity loadActivity = solo.getCurrentActivity();
@@ -84,6 +84,7 @@ public class TestApk extends ActivityInstrumentationTestCase2 {
 			Log.d(TAG, "Monkey success.") ;
 		} catch (Exception e) {
 			Log.d(TAG, "Monkey failed.");
+			solo.takeScreenshot();
 		}
     }
 	
