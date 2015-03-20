@@ -90,6 +90,10 @@ public class TestApk extends ActivityInstrumentationTestCase2 {
 	
 	@Override
 	public void tearDown() throws Exception {
+		Activity myActivity=getActivity();
+		if(myActivity!=null)
+		myActivity.finish();
+		super.tearDown();
 		solo.finishOpenedActivities();
 	}
 }
